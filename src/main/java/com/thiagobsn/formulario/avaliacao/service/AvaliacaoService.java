@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.thiagobsn.formulario.avaliacao.domain.entity.Avaliacao;
 import com.thiagobsn.formulario.avaliacao.domain.repository.AvaliacaoRepository;
+import com.thiagobsn.formulario.avaliacao.dto.CadastroAvaliacaoDTO;
+import com.thiagobsn.formulario.avaliacao.mapper.AvaliacaoMapper;
 
 @Service
 public class AvaliacaoService {
@@ -14,8 +16,16 @@ public class AvaliacaoService {
     @Autowired
     private AvaliacaoRepository avaliacaoRepository;
 
+    @Autowired
+    private AvaliacaoMapper avaliacaoMapper;
+
     public List<Avaliacao> listarTodos() {
         return avaliacaoRepository.findAll();
+    }
+
+    public Avaliacao cadastrar(CadastroAvaliacaoDTO cadastroAvaliacaoDTO) {
+        Avaliacao avaliacao = avaliacaoMapper.cadastroAvaliacaoDTOtoAvaliacao(cadastroAvaliacaoDTO);
+        return avaliacaoRepository.save(avaliacao);
     }
     
 }

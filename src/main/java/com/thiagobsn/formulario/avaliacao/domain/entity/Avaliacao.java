@@ -11,11 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Avaliacao")
 @Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 public class Avaliacao {
 
     @Id
@@ -29,7 +34,7 @@ public class Avaliacao {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "codigoTipoAvaliacao", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "codigoTipoAvaliacao", referencedColumnName = "codigo", nullable = false)
     private TipoAvaliacao tipo;
     
     @Column(name = "dataInicio")
