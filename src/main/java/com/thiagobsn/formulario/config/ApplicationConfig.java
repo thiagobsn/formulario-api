@@ -1,7 +1,10 @@
 package com.thiagobsn.formulario.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -9,12 +12,28 @@ import io.swagger.v3.oas.models.info.Info;
 @Configuration
 public class ApplicationConfig {
 
-    @Bean
+  @Bean
   public OpenAPI springShopOpenAPI() {
-      return new OpenAPI()
-              .info(new Info().title("Formulario API")
-              .description("")
-              .version("1.0.0"));
+    return new OpenAPI()
+        .info(new Info().title("Formulario API")
+            .description("")
+            .version("1.0.0"));
   }
-    
+
+  @Bean
+  public MessageSource messageSource() {
+    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+
+    messageSource.setBasename("classpath:messages");
+    messageSource.setDefaultEncoding("UTF-8");
+    return messageSource;
+  }
+
+  @Bean
+  public LocalValidatorFactoryBean getValidator() {
+    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+    bean.setValidationMessageSource(messageSource());
+    return bean;
+  }
+
 }
