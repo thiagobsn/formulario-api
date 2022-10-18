@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thiagobsn.formulario.avaliacao.domain.entity.Avaliacao;
+import com.thiagobsn.formulario.avaliacao.dto.AvaliacaoDTO;
 import com.thiagobsn.formulario.avaliacao.dto.CadastroAvaliacaoDTO;
 import com.thiagobsn.formulario.avaliacao.service.AvaliacaoService;
 
@@ -45,7 +46,7 @@ public class AvaliacaoController {
         @ApiResponse(responseCode = "500", description = "Erro interno")
     })
     @PostMapping
-    public ResponseEntity<Avaliacao> cadastrar(@RequestBody @Valid CadastroAvaliacaoDTO cadastroAvaliacaoDTO) {
+    public ResponseEntity<AvaliacaoDTO> cadastrar(@RequestBody @Valid CadastroAvaliacaoDTO cadastroAvaliacaoDTO) {
         return ResponseEntity.ok(avaliacaoService.cadastrar(cadastroAvaliacaoDTO));
     }
     

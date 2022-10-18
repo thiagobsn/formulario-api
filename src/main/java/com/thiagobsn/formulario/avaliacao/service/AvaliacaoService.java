@@ -1,12 +1,14 @@
 package com.thiagobsn.formulario.avaliacao.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thiagobsn.formulario.avaliacao.domain.entity.Avaliacao;
 import com.thiagobsn.formulario.avaliacao.domain.repository.AvaliacaoRepository;
+import com.thiagobsn.formulario.avaliacao.dto.AvaliacaoDTO;
 import com.thiagobsn.formulario.avaliacao.dto.CadastroAvaliacaoDTO;
 import com.thiagobsn.formulario.avaliacao.mapper.AvaliacaoMapper;
 
@@ -23,9 +25,9 @@ public class AvaliacaoService {
         return avaliacaoRepository.findAll();
     }
 
-    public Avaliacao cadastrar(CadastroAvaliacaoDTO cadastroAvaliacaoDTO) {
+    public AvaliacaoDTO cadastrar(CadastroAvaliacaoDTO cadastroAvaliacaoDTO) {
         Avaliacao avaliacao = avaliacaoMapper.cadastroAvaliacaoDTOtoAvaliacao(cadastroAvaliacaoDTO);
-        return avaliacaoRepository.save(avaliacao);
+        return avaliacaoMapper.avaliacaoToAvaliacaoDTO(avaliacaoRepository.save(avaliacao));
     }
     
 }
