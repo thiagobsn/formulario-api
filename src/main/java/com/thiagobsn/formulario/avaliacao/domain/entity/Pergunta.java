@@ -1,5 +1,7 @@
 package com.thiagobsn.formulario.avaliacao.domain.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ManyToAny;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,5 +42,8 @@ public class Pergunta {
     @ManyToOne
     @JoinColumn(name = "codigoAvaliacao", referencedColumnName = "codigo")
     private Avaliacao avaliacao;
+
+    @OneToMany(mappedBy = "pergunta")
+    private List<Item> itens;
 
 }
