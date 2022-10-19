@@ -1,5 +1,6 @@
 package com.thiagobsn.formulario.avaliacao.domain.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +25,20 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
+    @Column(length = 1000)
+    private String descricao;
+
+    private Integer ordemApresentacao;
+
+    private boolean ativa;
+
     @ManyToOne
     @JoinColumn(name = "codigoPergunta", referencedColumnName = "codigo")
     private Pergunta pergunta;
+
+
+   
+
+
     
 }

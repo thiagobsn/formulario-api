@@ -30,7 +30,7 @@ public class Pergunta {
     
     @ManyToOne
     @JoinColumn(name = "codigoTipoPergunta", referencedColumnName = "codigo", nullable = true)
-    private TipoPergunta TipoPergunta;
+    private TipoPergunta tipoPergunta;
 
     private Integer ordemApresentacao;
 
