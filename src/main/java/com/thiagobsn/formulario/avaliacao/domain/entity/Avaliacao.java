@@ -37,7 +37,7 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "codigoTipoAvaliacao", referencedColumnName = "codigo", nullable = false)
-    private TipoAvaliacao tipo;
+    private TipoAvaliacao tipoAvaliacao;
     
     @Column(name = "dataInicio")
     private LocalDate dataInicio;
